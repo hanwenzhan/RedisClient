@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CA746A921947AD040040C5BD /* Array+Additions#.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA746A911947AD040040C5BD /* Array+Additions#.swift */; };
+		CA746A941948DFAE0040C5BD /* RedisConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA746A931948DFAE0040C5BD /* RedisConnection.swift */; };
 		CADE497D1947880E00382C65 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE497C1947880E00382C65 /* main.swift */; };
 		CADE497F1947880E00382C65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE497E1947880E00382C65 /* ViewController.swift */; };
 		CADE49811947880E00382C65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE49801947880E00382C65 /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		CA746A911947AD040040C5BD /* Array+Additions#.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Additions#.swift"; sourceTree = "<group>"; };
+		CA746A931948DFAE0040C5BD /* RedisConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedisConnection.swift; sourceTree = "<group>"; };
 		CADE49771947880E00382C65 /* RedisClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedisClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADE497B1947880E00382C65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CADE497C1947880E00382C65 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				CADE497A1947880E00382C65 /* Supporting Files */,
 				CADE499C1947883600382C65 /* RedisClient.swift */,
 				CADE499E194792EA00382C65 /* RedisClient+Commands.swift */,
+				CA746A931948DFAE0040C5BD /* RedisConnection.swift */,
 			);
 			path = RedisClient;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				CADE49811947880E00382C65 /* AppDelegate.swift in Sources */,
 				CA746A921947AD040040C5BD /* Array+Additions#.swift in Sources */,
 				CADE497F1947880E00382C65 /* ViewController.swift in Sources */,
+				CA746A941948DFAE0040C5BD /* RedisConnection.swift in Sources */,
 				CADE499D1947883600382C65 /* RedisClient.swift in Sources */,
 				CADE497D1947880E00382C65 /* main.swift in Sources */,
 				CADE499F194792EA00382C65 /* RedisClient+Commands.swift in Sources */,
