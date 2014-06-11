@@ -17,43 +17,14 @@ enum RedisClientErrorCode: Int {
 
 class RedisClient : NSObject, NSStreamDelegate {
     
-    var inputStream: NSInputStream?;
-    var outputStream: NSOutputStream?;
+    var host: String
+    var port: Int
     
-    func connect(host: String = "127.0.0.1", port: Int = 6379) -> (Bool, NSError?) {
-        
-        var error: NSError?
-        
-        NSStream.getStreamsToHostWithName(host, port: port, inputStream: &inputStream, outputStream: &outputStream)
-        
-        if let inputStream = self.inputStream {
-            inputStream.delegate = self
-            inputStream.scheduleInRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
-            inputStream.open()
-        } else {
-            error = NSError.errorWithDomain(RedisClientErrorDomain, code: RedisClientErrorCode.inputStreamCreationFailed.toRaw(), userInfo: nil)
-            return (false, error)
-        }
-        
-        if let outputStream = self.outputStream {
-            outputStream.delegate = self
-            outputStream.scheduleInRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
-            outputStream.open()
-        } else {
-            error = NSError.errorWithDomain(RedisClientErrorDomain, code: RedisClientErrorCode.outputStreamCreationFailed.toRaw(), userInfo: nil)
-            return (false, error)
-        }
-
-        return (true, nil)        
-    }
-
-    func disconnect() {
-        if let inputStream = self.inputStream {
-            inputStream.close()
-        }
-        if let outputStream = self.outputStream {
-            outputStream.close()
-        }
+    var connections: RedisConnection[] = []
+    
+    init(host: String = "127.0.0.1", port: Int = 6379) {
+        self.host = host
+        self.port = port
     }
     
     // MARK: - Converting Redis commands to RESP strings
@@ -85,27 +56,24 @@ class RedisClient : NSObject, NSStreamDelegate {
     
     // MARK: - Sending commands
     
-    func executeCommand(respArray: String) {
+    func redisCommand(command: String) {
+        
+        let connection = RedisConnection(host: self.host, port: self.port)
 
-        var cString = respArray.nulTerminatedUTF8
-        
-        if let outputStream = self.outputStream {
-            outputStream.write(cString, maxLength: countElements(respArray))
+        connection.onConnectionEnd = {
+            var indexToRemove: Int?
+            for (idx, c) in enumerate(self.connections) {
+                if c == connection {
+                    indexToRemove = idx
+                }
+            }
+            if let i = indexToRemove {
+                self.connections.removeAtIndex(i)
+            }
+
         }
         
+        connection.executeCommand(respStringForRedisCommand(command))
     }
     
-    // MARK: - NSStreamDelegate
-    
-    func stream(aStream: NSStream!, handleEvent eventCode: NSStreamEvent) {
-        
-        println(eventCode.toRaw())
-        
-        if eventCode == .ErrorOccurred {
-            let error = aStream.streamError
-            println(error.localizedDescription)
-        }
-        
-    }
-            
 }
