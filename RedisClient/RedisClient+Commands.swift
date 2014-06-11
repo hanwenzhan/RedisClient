@@ -8,14 +8,7 @@
 
 import Foundation
 
-protocol Commands {
- 
-    func PING()
-    
-}
-
-
-extension RedisClient : Commands {
+extension RedisClient {
     
     func PING() {
         self.executeCommand(self.respStringForRedisCommand("PING"))
