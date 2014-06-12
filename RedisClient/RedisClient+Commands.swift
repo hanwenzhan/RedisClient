@@ -16,4 +16,8 @@ extension RedisClient {
         redisCommand("PING", callback:callback)
     }
     
+    func SET(key:String, value: AnyObject, callback: SimpleStringCallback? = nil) {
+        redisCommand("SET \(key) \(value)", callback: callback)
+    }
+    
 }
