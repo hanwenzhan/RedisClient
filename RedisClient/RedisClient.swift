@@ -56,10 +56,12 @@ class RedisClient : NSObject, NSStreamDelegate {
     
     // MARK: - Sending commands
     
-    func redisCommand(command: String) {
+    func redisCommand(command: String, callback: ((String?) -> Void)?) {
         
         let connection = RedisConnection(host: self.host, port: self.port)
-
+        
+        connection.onResponse = callback
+        
         connection.onConnectionEnd = {
             var indexToRemove: Int?
             for (idx, c) in enumerate(self.connections) {
