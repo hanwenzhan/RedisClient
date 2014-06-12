@@ -28,14 +28,18 @@ class ViewController: NSViewController {
     }
 
     @IBAction func pingClicked(sender : AnyObject) {
-        client.PING() {(String response) in
-            if let text = response {
-                self.writeToLog(text)
-            } }
+        client.PING(writeToLog())
+
     }
     
-    func writeToLog(text: String) {
-        self.logTextView.insertText(text + "\n")
+    func writeToLog() -> SimpleStringCallback {
+        
+        let logFunc: (String?) -> (Void) = {(response: String?) in
+            if let text = response {
+                self.logTextView.insertText(text + "\n")
+            } }
+
+        return logFunc                
     }
     
     override func awakeFromNib() {
