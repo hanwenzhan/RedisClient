@@ -8,10 +8,12 @@
 
 import Foundation
 
+typealias SimpleStringCallback = ((String?) -> (Void))
+
 extension RedisClient {
     
-    func PING() {
-        self.executeCommand(self.respStringForRedisCommand("PING"))
+    func PING(callback: SimpleStringCallback? = nil) {
+        redisCommand("PING", callback:callback)
     }
     
 }
