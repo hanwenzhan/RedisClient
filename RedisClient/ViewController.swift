@@ -14,14 +14,6 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let (success, error) = client.connect()
-
-        if !success {
-            println(error!.localizedDescription)
-        } else {
-            println("connected successfully")
-        }
     }
 
     override var representedObject: AnyObject? {
@@ -31,9 +23,8 @@ class ViewController: NSViewController {
                                     
     }
 
-
     @IBAction func pingClicked(sender : AnyObject) {
-        client.PING()
+        client.PING() {(String response) in println(response) }
     }
 }
 
