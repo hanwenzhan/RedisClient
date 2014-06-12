@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A238x" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment defaultVersion="101000" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6154.17"/>
     </dependencies>
     <scenes>
@@ -122,9 +123,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="foo" destination="431-x1-BJb" id="Ijv-9D-vQt"/>
                         <outlet property="keyTextField" destination="H8E-HE-k2b" id="onu-Fd-elr"/>
-                        <outlet property="logTextView" destination="431-x1-BJb" id="g3Y-jO-PIg"/>
                         <outlet property="logView" destination="BJw-1d-hwm" id="3je-0d-6N8"/>
                         <outlet property="valueTextField" destination="GkW-jW-bwj" id="kDJ-1d-vgv"/>
                     </connections>
