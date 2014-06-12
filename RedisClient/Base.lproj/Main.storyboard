@@ -31,11 +31,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="RedisClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="386" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView appearanceType="aqua" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJw-1d-hwm">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="135"/>
+                                <rect key="frame" x="0.0" y="0.0" width="386" height="135"/>
                                 <clipView key="contentView" id="OEh-Tv-Zuc">
                                     <rect key="frame" x="1" y="1" width="238" height="133"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,10 +45,10 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" red="0.77639079430000002" green="1" blue="0.33185240440000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="backgroundColor" red="0.24021810293197632" green="0.24026587605476379" blue="0.24021506309509277" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <size key="minSize" width="448" height="133"/>
+                                            <size key="minSize" width="384" height="133"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" red="0.77647058823529413" green="0.99607843137254903" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
-                                            <size key="minSize" width="448" height="133"/>
+                                            <size key="minSize" width="384" height="133"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                         </textView>
                                     </subviews>
@@ -63,8 +63,40 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <textField appearanceType="aqua" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H8E-HE-k2b">
+                                <rect key="frame" x="30" y="204" width="96" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="vg8-DL-OTQ"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Key" drawsBackground="YES" id="ueb-bs-v9b">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField appearanceType="aqua" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GkW-jW-bwj">
+                                <rect key="frame" x="141" y="204" width="96" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="Ihj-AQ-7UY"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Value" drawsBackground="YES" id="wMB-iO-ZdC">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button appearanceType="aqua" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g01-Gy-Ny5">
+                                <rect key="frame" x="250" y="198" width="66" height="32"/>
+                                <buttonCell key="cell" type="push" title="SET" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4zC-ml-mc6">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="setClicked:" target="XfG-lQ-9wD" id="2Zf-m8-7BG"/>
+                                </connections>
+                            </button>
                             <button appearanceType="aqua" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j1a-kS-ZKR">
-                                <rect key="frame" x="189" y="216" width="73" height="32"/>
+                                <rect key="frame" x="250" y="233" width="73" height="32"/>
                                 <buttonCell key="cell" type="push" title="PING" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FE5-te-dSP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -75,24 +107,31 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="BJw-1d-hwm" firstAttribute="top" secondItem="j1a-kS-ZKR" secondAttribute="bottom" constant="88" id="00U-Eg-RPW"/>
                             <constraint firstItem="BJw-1d-hwm" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="08t-oc-9L7"/>
                             <constraint firstItem="BJw-1d-hwm" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="165" id="6iH-oI-h2D"/>
-                            <constraint firstItem="j1a-kS-ZKR" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="56" id="88H-MO-rjY"/>
+                            <constraint firstItem="g01-Gy-Ny5" firstAttribute="leading" secondItem="j1a-kS-ZKR" secondAttribute="leading" id="CMC-Ga-9BY"/>
+                            <constraint firstItem="H8E-HE-k2b" firstAttribute="top" secondItem="j1a-kS-ZKR" secondAttribute="bottom" constant="14" id="HBh-yQ-Ouj"/>
+                            <constraint firstItem="H8E-HE-k2b" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="30" id="QDp-O3-C1f"/>
                             <constraint firstAttribute="trailing" secondItem="BJw-1d-hwm" secondAttribute="trailing" id="TLa-40-yoe"/>
+                            <constraint firstItem="GkW-jW-bwj" firstAttribute="leading" secondItem="H8E-HE-k2b" secondAttribute="trailing" constant="15" id="Ty3-q2-RG3"/>
+                            <constraint firstItem="GkW-jW-bwj" firstAttribute="centerY" secondItem="H8E-HE-k2b" secondAttribute="centerY" id="coR-f1-quQ"/>
+                            <constraint firstItem="j1a-kS-ZKR" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="39" id="cqe-Wn-yeG"/>
+                            <constraint firstItem="GkW-jW-bwj" firstAttribute="centerY" secondItem="g01-Gy-Ny5" secondAttribute="centerY" constant="0.5" id="isT-ke-hAU"/>
                             <constraint firstAttribute="bottom" secondItem="BJw-1d-hwm" secondAttribute="bottom" id="oNj-Jp-FkZ"/>
-                            <constraint firstAttribute="centerX" secondItem="j1a-kS-ZKR" secondAttribute="centerX" constant="-0.5" id="xAg-Ag-3aM"/>
+                            <constraint firstItem="g01-Gy-Ny5" firstAttribute="leading" secondItem="GkW-jW-bwj" secondAttribute="trailing" constant="19" id="rF5-AK-Izj"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="foo" destination="431-x1-BJb" id="Ijv-9D-vQt"/>
+                        <outlet property="keyTextField" destination="H8E-HE-k2b" id="onu-Fd-elr"/>
                         <outlet property="logTextView" destination="431-x1-BJb" id="g3Y-jO-PIg"/>
                         <outlet property="logView" destination="BJw-1d-hwm" id="3je-0d-6N8"/>
+                        <outlet property="valueTextField" destination="GkW-jW-bwj" id="kDJ-1d-vgv"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="692"/>
+            <point key="canvasLocation" x="66" y="644"/>
         </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">

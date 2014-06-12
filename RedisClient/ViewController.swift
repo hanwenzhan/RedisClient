@@ -14,6 +14,9 @@ class ViewController: NSViewController {
     
     @IBOutlet var logView : NSScrollView = nil
 
+    @IBOutlet var keyTextField : NSTextField = nil
+    @IBOutlet var valueTextField : NSTextField = nil
+
     var logTextView : NSTextView {
         get {
             return self.logView.contentView.documentView as NSTextView
@@ -32,6 +35,12 @@ class ViewController: NSViewController {
 
     }
     
+    @IBAction func setClicked(sender : AnyObject) {
+        let key = self.keyTextField.stringValue!
+        let value = self.valueTextField.stringValue!
+        client.SET(key, value: value, callback: writeToLog())
+    }
+
     func writeToLog() -> SimpleStringCallback {
         
         let logFunc: (String?) -> (Void) = {(response: String?) in
