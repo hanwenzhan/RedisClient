@@ -12,10 +12,14 @@ class ViewController: NSViewController {
     
     var client = RedisClient()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBOutlet var logView : NSScrollView = nil
 
+    var logTextView : NSTextView {
+        get {
+            return self.logView.contentView.documentView as NSTextView
+        }
+    }
+    
     override var representedObject: AnyObject? {
         didSet {
         // Update the view, if already loaded.
@@ -24,7 +28,21 @@ class ViewController: NSViewController {
     }
 
     @IBAction func pingClicked(sender : AnyObject) {
-        client.PING() {(String response) in println(response) }
+        client.PING() {(String response) in
+            if let text = response {
+                self.writeToLog(text)
+            } }
     }
+    
+    func writeToLog(text: String) {
+        self.logTextView.insertText(text + "\n")
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.logTextView.font = NSFont(name: "Menlo", size: 14.0)
+        self.logTextView.textColor = NSColor.greenColor()
+    }
+
 }
 

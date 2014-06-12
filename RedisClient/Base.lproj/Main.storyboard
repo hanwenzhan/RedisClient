@@ -34,8 +34,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button appearanceType="aqua" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j1a-kS-ZKR">
-                                <rect key="frame" x="184" y="133" width="73" height="32"/>
+                            <scrollView appearanceType="aqua" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJw-1d-hwm">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="135"/>
+                                <clipView key="contentView" id="OEh-Tv-Zuc">
+                                    <rect key="frame" x="1" y="1" width="238" height="133"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView importsGraphics="NO" findStyle="panel" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="431-x1-BJb">
+                                            <rect key="frame" x="0.0" y="0.0" width="238" height="133"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" red="0.77639079430000002" green="1" blue="0.33185240440000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.24021810293197632" green="0.24026587605476379" blue="0.24021506309509277" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <size key="minSize" width="448" height="133"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <color key="insertionPointColor" red="0.77647058823529413" green="0.99607843137254903" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                            <size key="minSize" width="448" height="133"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="ni4-EH-Jcm">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="rIB-j0-btu">
+                                    <rect key="frame" x="223" y="1" width="16" height="133"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <button appearanceType="aqua" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j1a-kS-ZKR">
+                                <rect key="frame" x="189" y="216" width="73" height="32"/>
                                 <buttonCell key="cell" type="push" title="PING" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FE5-te-dSP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -45,7 +74,21 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="BJw-1d-hwm" firstAttribute="top" secondItem="j1a-kS-ZKR" secondAttribute="bottom" constant="88" id="00U-Eg-RPW"/>
+                            <constraint firstItem="BJw-1d-hwm" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="08t-oc-9L7"/>
+                            <constraint firstItem="BJw-1d-hwm" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="165" id="6iH-oI-h2D"/>
+                            <constraint firstItem="j1a-kS-ZKR" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="56" id="88H-MO-rjY"/>
+                            <constraint firstAttribute="trailing" secondItem="BJw-1d-hwm" secondAttribute="trailing" id="TLa-40-yoe"/>
+                            <constraint firstAttribute="bottom" secondItem="BJw-1d-hwm" secondAttribute="bottom" id="oNj-Jp-FkZ"/>
+                            <constraint firstAttribute="centerX" secondItem="j1a-kS-ZKR" secondAttribute="centerX" constant="-0.5" id="xAg-Ag-3aM"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="foo" destination="431-x1-BJb" id="Ijv-9D-vQt"/>
+                        <outlet property="logTextView" destination="431-x1-BJb" id="g3Y-jO-PIg"/>
+                        <outlet property="logView" destination="BJw-1d-hwm" id="3je-0d-6N8"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
