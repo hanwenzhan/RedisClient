@@ -13,11 +13,15 @@ class RedisConnection : NSObject, NSStreamDelegate {
     var host: String
     var port: Int
     
+    var onResponse: ((String?) -> (Void))?
     var onConnectionEnd: ((Void) -> (Void))?
 
+    // private
     var inputStream: NSInputStream?
     var outputStream: NSOutputStream?
 
+    var data = NSMutableData()
+    
     var command: String?
     
     var dataSent = false
@@ -86,6 +90,27 @@ class RedisConnection : NSObject, NSStreamDelegate {
         
     }
 
+    func rawResponse() -> NSString? {
+        if let copiedData = self.data.copy() as? NSData {
+            let encoding = NSString.stringEncodingForData(copiedData, encodingOptions: nil, convertedString: nil, usedLossyConversion: nil)
+            let response :NSString? = NSString(data: copiedData, encoding: encoding)
+            return response
+        }
+        
+        return nil
+    }
+    
+    func parsedResponse() -> String? {
+        
+        if let rawResponse = rawResponse() {
+            if rawResponse.substringToIndex(1) == "+" {
+                return rawResponse.substringWithRange(NSRange(location:1, length:rawResponse.length - 3))
+            }
+        }
+
+        return nil
+    }
+    
     // MARK: - NSStreamDelegate
     
     func stream(aStream: NSStream!, handleEvent eventCode: NSStreamEvent) {
@@ -94,14 +119,29 @@ class RedisConnection : NSObject, NSStreamDelegate {
             
             switch eventCode {
             case NSStreamEvent.HasBytesAvailable:
-                // TODO: parse
-                println()
-            
+
+                var buf = Array<UInt8>(count:1024, repeatedValue: 0)
+
+                var len = 0;
+                len = self.inputStream!.read(&buf, maxLength: 1024)
+                if len > 0 {
+                    data.appendBytes(buf, length: len)
+                }
+                
+                if len < 1024 {
+                    if let response = parsedResponse() {
+                        if let callback = onResponse {
+                            callback(response)
+                        }
+                    }
+                }
+                
             case NSStreamEvent.ErrorOccurred:
                 let error = aStream.streamError
                 println(error.localizedDescription)
                 disconnect();
             case NSStreamEvent.EndEncountered:
+                
                 disconnect();
                 
             default:
